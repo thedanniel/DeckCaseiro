@@ -111,6 +111,7 @@ void Cena1() {
   tft.setCursor(20, 112);
   tft.print("Cena 1");
 }
+
 void Cena2() {
   tft.setTextFont(2);
   tft.setTextSize(1);
@@ -118,6 +119,7 @@ void Cena2() {
   tft.setCursor(99, 112);
   tft.print("Cena 2");
 }
+
 void Cena3() {
   tft.setTextFont(2);
   tft.setTextSize(1);
@@ -125,6 +127,7 @@ void Cena3() {
   tft.setCursor(178, 112);
   tft.print("Cena 3");
 }
+
 void Cena4() {
   tft.setTextFont(2);
   tft.setTextSize(1);
@@ -169,10 +172,10 @@ void printBrilhoUp() {
 
 void printBrilhoDown() {
   tft.fillCircle(200, 120, 15, TFT_BLACK);
-  tft.drawWideLine(200, 94, 200, 99, 3, TFT_BLACK);    //up
-  tft.drawWideLine(200, 140, 200, 145, 3, TFT_BLACK);  //down
-  tft.drawWideLine(175, 120, 180, 120, 3, TFT_BLACK);  //left
-  tft.drawWideLine(220, 120, 225, 120, 3, TFT_BLACK);  //right
+  tft.drawWideLine(200, 96, 200, 100, 3, TFT_BLACK);    //up
+  tft.drawWideLine(200, 140, 200, 144, 3, TFT_BLACK);  //down
+  tft.drawWideLine(176, 120, 180, 120, 3, TFT_BLACK);  //left
+  tft.drawWideLine(220, 120, 224, 120, 3, TFT_BLACK);  //right
   tft.drawWideLine(183, 103, 186, 106, 3, TFT_BLACK);  //top-left
   tft.drawWideLine(217, 103, 214, 106, 3, TFT_BLACK);  //top-right
   tft.drawWideLine(186, 133, 183, 136, 3, TFT_BLACK);  //bottom-left
@@ -378,4 +381,21 @@ void backButton() {
   tft.drawLine(51, 180, 31, 200, TFT_BLACK);
   tft.drawLine(30, 200, 50, 220, TFT_BLACK);
   tft.drawLine(31, 200, 51, 220, TFT_BLACK);
+}
+
+void linesXY() {
+  for (int i = 0; i < 320; i += 20) {
+    tft.setCursor(i, 0);
+    tft.setTextFont(1);
+    tft.setTextSize(1);
+    tft.setTextColor(TFT_WHITE, TFT_BLACK);
+    tft.print(i);
+    tft.setCursor(0, i);
+    tft.setTextFont(1);
+    tft.setTextSize(1);
+    tft.setTextColor(TFT_WHITE, TFT_BLACK);
+    tft.print(i);
+    tft.drawLine(0, i, 320, i, 0x39C4);
+    tft.drawLine(i, 0, i, 320, 0x39C4);
+  }
 }
