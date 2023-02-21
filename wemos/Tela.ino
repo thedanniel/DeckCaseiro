@@ -1,6 +1,4 @@
-//OBS
-
-void printOBS() {
+void printOBS() {  //OBS
   tft.fillScreen(TFT_BLACK);
   for (int i = 1; i < 13; i++) {
     printTiles(i);
@@ -22,9 +20,7 @@ void printOBS() {
   backButton();
 }
 
-//Aplicativos
-
-void printAPPs() {
+void printAPPs() {  //Aplicativos
   tft.fillScreen(TFT_BLACK);
   printTiles(2);
   printTiles(3);
@@ -40,11 +36,16 @@ void printAPPs() {
   backButton();
 }
 
-void printPC() {
+void printPC() {  //PC
   tft.fillScreen(TFT_BLACK);
-  printTiles(6);
+  printTiles(3);
+  printTiles(4);
   printTiles(7);
   printTiles(8);
+  printTiles(12);
+  //inesXY();
+  printBrilhoUp();
+  printBrilhoDown();
   printSleep();
   printPower();
   printLock();
@@ -52,9 +53,7 @@ void printPC() {
   backButton();
 }
 
-//SOM
-
-void printSOM() {
+void printSOM() {  //SOM
   tft.fillScreen(TFT_BLACK);
   printTiles(2);
   printTiles(3);
