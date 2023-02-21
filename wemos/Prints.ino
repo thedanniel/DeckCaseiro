@@ -382,20 +382,3 @@ void backButton() {
   tft.drawLine(30, 200, 50, 220, TFT_BLACK);
   tft.drawLine(31, 200, 51, 220, TFT_BLACK);
 }
-
-void linesXY() {
-  for (int i = 0; i < 320; i += 20) {
-    tft.setCursor(i, 0);
-    tft.setTextFont(1);
-    tft.setTextSize(1);
-    tft.setTextColor(TFT_WHITE, TFT_BLACK);
-    tft.print(i);
-    tft.setCursor(0, i);
-    tft.setTextFont(1);
-    tft.setTextSize(1);
-    tft.setTextColor(TFT_WHITE, TFT_BLACK);
-    tft.print(i);
-    tft.drawLine(0, i, 320, i, 0x39C4);
-    tft.drawLine(i, 0, i, 320, 0x39C4);
-  }
-}
