@@ -43,7 +43,6 @@ void printPC() {  //PC
   printTiles(7);
   printTiles(8);
   printTiles(12);
-  //inesXY();
   printBrilhoUp();
   printBrilhoDown();
   printSleep();
