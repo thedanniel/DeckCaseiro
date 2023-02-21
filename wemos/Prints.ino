@@ -155,49 +155,68 @@ void printLogoB() {
   tft.fillCircle(133, 207, 11, TFT_BLACK);
 }
 
+void printBrilhoUp() {
+  tft.fillCircle(200, 41, 15, TFT_BLACK);
+  tft.drawWideLine(200, 8, 200, 21, 3, TFT_BLACK);   //up
+  tft.drawWideLine(200, 61, 200, 74, 3, TFT_BLACK);  //down
+  tft.drawWideLine(167, 40, 180, 40, 3, TFT_BLACK);  //left
+  tft.drawWideLine(220, 40, 233, 40, 3, TFT_BLACK);  //right
+  tft.drawWideLine(186, 26, 176, 16, 3, TFT_BLACK);  //top-left
+  tft.drawWideLine(214, 26, 224, 16, 3, TFT_BLACK);  //top-right
+  tft.drawWideLine(186, 54, 176, 64, 3, TFT_BLACK);  //bottom-left
+  tft.drawWideLine(214, 54, 224, 64, 3, TFT_BLACK);  //bottom-right
+}
+
+void printBrilhoDown() {
+  tft.fillCircle(200, 120, 15, TFT_BLACK);
+  tft.drawWideLine(200, 94, 200, 99, 3, TFT_BLACK);    //up
+  tft.drawWideLine(200, 140, 200, 145, 3, TFT_BLACK);  //down
+  tft.drawWideLine(175, 120, 180, 120, 3, TFT_BLACK);  //left
+  tft.drawWideLine(220, 120, 225, 120, 3, TFT_BLACK);  //right
+  tft.drawWideLine(183, 103, 186, 106, 3, TFT_BLACK);  //top-left
+  tft.drawWideLine(217, 103, 214, 106, 3, TFT_BLACK);  //top-right
+  tft.drawWideLine(186, 133, 183, 136, 3, TFT_BLACK);  //bottom-left
+  tft.drawWideLine(214, 133, 217, 136, 3, TFT_BLACK);  //bottom-right
+}
+
 void printSleep() {
-  tft.fillCircle(120, 120, 24, TFT_BLACK);  //sleep
-  tft.fillCircle(133, 120, 18, TFT_WHITE);
+  tft.fillCircle(279, 120, 24, TFT_BLACK);  //sleep
+  tft.fillCircle(289, 120, 18, TFT_WHITE);
 }
 
 void printSleepB() {
-  tft.fillCircle(120, 120, 24, TFT_BLACK);  //sleep
-  tft.fillCircle(133, 120, 18, TFT_BLUE);
+  tft.fillCircle(279, 120, 24, TFT_BLACK);  //sleep
+  tft.fillCircle(289, 120, 18, TFT_BLUE);
 }
 
 void printPower() {
-  tft.fillCircle(199, 120, 24, TFT_BLACK);  // power off
-  tft.fillCircle(199, 120, 18, TFT_WHITE);
-  tft.fillRoundRect(194, 85, 11, 30, 4, TFT_WHITE);
-  tft.fillRoundRect(196, 90, 7, 24, 4, TFT_BLACK);
+  tft.fillCircle(279, 42, 24, TFT_BLACK);  // power off
+  tft.fillCircle(279, 42, 18, TFT_WHITE);
+  tft.fillRoundRect(274, 8, 11, 30, 4, TFT_WHITE);
+  tft.fillRoundRect(276, 13, 7, 24, 4, TFT_BLACK);
 }
 
 void printPowerB() {
-  tft.fillCircle(199, 120, 24, TFT_BLACK);  // power off
-  tft.fillCircle(199, 120, 18, TFT_BLUE);
-  tft.fillRoundRect(194, 85, 11, 30, 4, TFT_BLUE);
-  tft.fillRoundRect(196, 90, 7, 24, 4, TFT_BLACK);
-}
-
-void printRestart() {
-  tft.fillCircle(279, 120, 24, TFT_BLACK);  // restart
-  tft.fillCircle(279, 120, 18, TFT_WHITE);
+  tft.fillCircle(279, 42, 24, TFT_BLACK);  // power off
+  tft.fillCircle(279, 42, 18, TFT_BLUE);
+  tft.fillRoundRect(274, 8, 11, 30, 4, TFT_BLUE);
+  tft.fillRoundRect(276, 13, 7, 24, 4, TFT_BLACK);
 }
 
 void printLock() {
-  tft.fillRoundRect(270, 96, 17, 25, 9, TFT_BLACK);  //lock
-  tft.fillRoundRect(272, 98, 13, 20, 7, TFT_WHITE);
-  tft.fillRoundRect(263, 111, 31, 27, 5, TFT_BLACK);
-  tft.fillCircle(278, 121, 3, TFT_WHITE);
-  tft.fillRoundRect(277, 123, 3, 9, 1, TFT_WHITE);
+  tft.fillRoundRect(272, 180, 17, 25, 9, TFT_BLACK);  //lock
+  tft.fillRoundRect(274, 182, 13, 20, 7, TFT_WHITE);
+  tft.fillRoundRect(265, 194, 31, 27, 5, TFT_BLACK);
+  tft.fillCircle(280, 204, 3, TFT_WHITE);
+  tft.fillRoundRect(279, 205, 3, 9, 1, TFT_WHITE);
 }
 
 void printLockB() {
-  tft.fillRoundRect(270, 96, 17, 25, 9, TFT_BLACK);  //lock
-  tft.fillRoundRect(272, 98, 13, 20, 7, TFT_BLUE);
-  tft.fillRoundRect(263, 111, 31, 27, 5, TFT_BLACK);
-  tft.fillCircle(278, 121, 3, TFT_WHITE);
-  tft.fillRoundRect(277, 123, 3, 9, 1, TFT_BLUE);
+  tft.fillRoundRect(272, 180, 17, 25, 9, TFT_BLACK);  //lock
+  tft.fillRoundRect(274, 182, 13, 20, 7, TFT_BLUE);
+  tft.fillRoundRect(265, 194, 31, 27, 5, TFT_BLACK);
+  tft.fillCircle(280, 204, 3, TFT_WHITE);
+  tft.fillRoundRect(279, 205, 3, 9, 1, TFT_BLUE);
 }
 
 void printTaskManager() {
