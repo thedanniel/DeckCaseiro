@@ -1,9 +1,6 @@
 #include "HID-Project.h"
 
-//#define SYSTEM_POWER_DOWN 0x81
-
 void setup() {
-  // start serial port at 9600 bps:
   Serial.begin(9600);
   Serial1.begin(9600);
   Keyboard.begin();
@@ -12,7 +9,6 @@ void setup() {
 }
 
 void loop() {
-  // if we get a valid byte, read analog ins:
   if (Serial1.available() > 0) {
     int inByte = Serial1.read();
     Serial.println(inByte);
@@ -56,24 +52,22 @@ void seleciona(int x) {
       Keyboard.write(KEY_F23);
       break;
     case 'l':  //PC
-      System.write(SYSTEM_SLEEP);
-      break;
-    case 'm':
       System.write(SYSTEM_POWER_DOWN);
       break;
+    case 'm':
+      System.write(SYSTEM_SLEEP);
+      break;
     case 'n':
-      //System.write(SYSTEM_POWER_DOWN);
+      brilhoUp();
+      break;
+    case 'N':
+      brilhoDown();
       break;
     case 'o':
-      Keyboard.press(KEY_LEFT_GUI);
-      Keyboard.press(KEY_L);
-      Keyboard.releaseAll();
+      lock();
       break;
     case 'p':
-      Keyboard.press(KEY_LEFT_CTRL);
-      Keyboard.press(KEY_LEFT_SHIFT);
-      Keyboard.press(KEY_ESC);
-      Keyboard.releaseAll();
+      taskmanager();
       break;
     case 'q':
       calculadora();
@@ -108,10 +102,6 @@ void seleciona(int x) {
   }
 }
 
-//OBS
-//Keyboard.write(KEY_F13);
-
-
 //PC
 void brilhoUp() {
   Consumer.write(CONSUMER_BRIGHTNESS_UP);
@@ -130,6 +120,19 @@ void explorer() {
 }
 void calculadora() {
   Consumer.write(CONSUMER_CALCULATOR);
+}
+
+void taskmanager() {
+  Keyboard.press(KEY_LEFT_CTRL);
+  Keyboard.press(KEY_LEFT_SHIFT);
+  Keyboard.press(KEY_ESC);
+  Keyboard.releaseAll();
+}
+
+void lock() {
+  Keyboard.press(KEY_LEFT_GUI);
+  Keyboard.press(KEY_L);
+  Keyboard.releaseAll();
 }
 
 //SOM
