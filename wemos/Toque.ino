@@ -157,28 +157,44 @@ void toque() {
       printSpeakerOBS();
     }
   } else if (tela == 2) {  //PC
-    if (toqueDetect(83, 83, 75, 75)) {
-      printBlueTiles(6);
-      printSleepB();
-      botao('l');
+    if (toqueDetect(162, 4, 75, 75)) {
+      printBlueTiles(3);
+      printBrilhoUp();
+      botao('n');
       delay(100);
-      printTiles(6);
-      printSleep();
+      printTiles(3);
+      printBrilhoUp();
     }
     if (toqueDetect(162, 83, 75, 75)) {
       printBlueTiles(7);
-      printPowerB();
-      botao('m');
+      printBrilhoDown();
+      botao('N');
       delay(100);
       printTiles(7);
+      printBrilhoDown();
+    }
+    if (toqueDetect(241, 4, 75, 75)) {
+      printBlueTiles(4);
+      printPowerB();
+      botao('l');
+      delay(100);
+      printTiles(4);
       printPower();
     }
     if (toqueDetect(241, 83, 75, 75)) {
       printBlueTiles(8);
+      printSleepB();
+      botao('m');
+      delay(100);
+      printTiles(8);
+      printSleep();
+    }
+    if (toqueDetect(241, 162, 75, 75)) {
+      printBlueTiles(12);
       printLockB();
       botao('o');
       delay(100);
-      printTiles(8);
+      printTiles(12);
       printLock();
     }
     if (toqueDetect(4, 162, 75, 75)) {
