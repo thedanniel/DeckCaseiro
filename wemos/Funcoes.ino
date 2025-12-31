@@ -31,20 +31,3 @@ void desenhaTriangulo(int x, int y, int w, int h, int o, uint32_t color) {
       break;
   }
 }
-
-void linesXY() {
-  for (int i = 0; i < 320; i += 20) {
-    tft.setCursor(i, 0);
-    tft.setTextFont(1);
-    tft.setTextSize(1);
-    tft.setTextColor(TFT_WHITE, TFT_BLACK);
-    tft.print(i);
-    tft.setCursor(0, i);
-    tft.setTextFont(1);
-    tft.setTextSize(1);
-    tft.setTextColor(TFT_WHITE, TFT_BLACK);
-    tft.print(i);
-    tft.drawLine(0, i, 320, i, 0x39C4);
-    tft.drawLine(i, 0, i, 320, 0x39C4);
-  }
-}
