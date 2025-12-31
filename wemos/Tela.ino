@@ -1,3 +1,7 @@
+void MenuButtons() { //tela inicial
+  drawSdJpeg("/0.jpg", 0, 0);
+}
+
 void printOBS() {  //OBS
   drawSdJpeg("/4.jpg", 0, 0);
 }
@@ -12,4 +16,5 @@ void printPC() {  //PC
 
 void printSOM() {  //SOM
   drawSdJpeg("/1.jpg", 0, 0);
+
 }
