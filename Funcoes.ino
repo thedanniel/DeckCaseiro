@@ -1,64 +1,13 @@
-bool toqueDetect(int xini, int yini, int xend, int yend) {
-  uint16_t x, y;
-  if (tft.getTouch(&x, &y)) {
-    if ((x > xini) && (x < (xini + xend))) {
-      if ((y > yini) && (y <= (yini + yend))) {
-        return true;
-      } else {
-        return false;
-      }
-    } else {
-      return false;
-    }
-  } else {
-    return false;
-  }
+static inline bool toqueDetectXY(uint16_t x, uint16_t y, int xini, int yini, int w, int h) {
+  return (x >= xini && x < (xini + w) && y >= yini && y < (yini + h));
 }
 
-void desenhaTriangulo(int x, int y, int w, int h, int o, uint32_t color) {
-  switch (o) {
-    case 0:
-      tft.fillTriangle(x, (y + (w / 2)), (x + h), y, (x + h), (y + w), color);
-      break;
-    case 1:
-      tft.fillTriangle(x, (y + h), (x + (w / 2)), y, (x + w), (y + h), color);
-      break;
-    case 2:
-      tft.fillTriangle(x, y, x, (y + w), (x + h), (y + (w / 2)), color);
-      break;
-    case 3:
-      tft.fillTriangle(x, y, (x + (w / 2)), (y + h), (x + w), y, color);
-      break;
-  }
-}
 
+//Funções da biblioteca TFT_eSPI
 void sdBegin(){
   if (!SD.begin(5, tft.getSPIinstance())) {
-    Serial.println("Card Mount Failed");
     return;
   }
-  uint8_t cardType = SD.cardType();
-
-  if (cardType == CARD_NONE) {
-    Serial.println("No SD card attached");
-    return;
-  }
-
-  Serial.print("SD Card Type: ");
-  if (cardType == CARD_MMC) {
-    Serial.println("MMC");
-  } else if (cardType == CARD_SD) {
-    Serial.println("SDSC");
-  } else if (cardType == CARD_SDHC) {
-    Serial.println("SDHC");
-  } else {
-    Serial.println("UNKNOWN");
-  }
-
-  uint64_t cardSize = SD.cardSize() / (1024 * 1024);
-  Serial.printf("SD Card Size: %lluMB\n", cardSize);
-
-  Serial.println("initialisation done."); 
 }
 
 void drawSdJpeg(const char *filename, int xpos, int ypos) {
@@ -67,28 +16,15 @@ void drawSdJpeg(const char *filename, int xpos, int ypos) {
   File jpegFile = SD.open(filename, FILE_READ);  // or, file handle reference for SD library
 
   if (!jpegFile) {
-    Serial.print("ERROR: File \"");
-    Serial.print(filename);
-    Serial.println("\" not found!");
     return;
   }
-
-  Serial.println("===========================");
-  Serial.print("Drawing file: ");
-  Serial.println(filename);
-  Serial.println("===========================");
 
   // Use one of the following methods to initialise the decoder:
   bool decoded = JpegDec.decodeSdFile(jpegFile);  // Pass the SD file handle to the decoder,
   //bool decoded = JpegDec.decodeSdFile(filename);  // or pass the filename (String or character array)
 
   if (decoded) {
-    // print information about the image to the serial port
-    jpegInfo();
-    // render the image onto the screen at given coordinates
     jpegRender(xpos, ypos);
-  } else {
-    Serial.println("Jpeg file format not supported!");
   }
 }
 
@@ -98,8 +34,6 @@ void drawSdJpeg(const char *filename, int xpos, int ypos) {
 // This function assumes xpos,ypos is a valid screen coordinate. For convenience images that do not
 // fit totally on the screen are cropped to the nearest MCU size and may leave right/bottom borders.
 void jpegRender(int xpos, int ypos) {
-
-  //jpegInfo(); // Print information from the JPEG file (could comment this line out)
 
   uint16_t *pImg;
   uint16_t mcu_w = JpegDec.MCUWidth;
@@ -169,57 +103,4 @@ void jpegRender(int xpos, int ypos) {
   }
 
   tft.setSwapBytes(swapBytes);
-
-  showTime(millis() - drawTime);  // These lines are for sketch testing only
 }
-
-//####################################################################################################
-// Print image information to the serial port (optional)
-//####################################################################################################
-// JpegDec.decodeFile(...) or JpegDec.decodeArray(...) must be called before this info is available!
-void jpegInfo() {
-
-  // Print information extracted from the JPEG file
-  Serial.println("JPEG image info");
-  Serial.println("===============");
-  Serial.print("Width      :");
-  Serial.println(JpegDec.width);
-  Serial.print("Height     :");
-  Serial.println(JpegDec.height);
-  Serial.print("Components :");
-  Serial.println(JpegDec.comps);
-  Serial.print("MCU / row  :");
-  Serial.println(JpegDec.MCUSPerRow);
-  Serial.print("MCU / col  :");
-  Serial.println(JpegDec.MCUSPerCol);
-  Serial.print("Scan type  :");
-  Serial.println(JpegDec.scanType);
-  Serial.print("MCU width  :");
-  Serial.println(JpegDec.MCUWidth);
-  Serial.print("MCU height :");
-  Serial.println(JpegDec.MCUHeight);
-  Serial.println("===============");
-  Serial.println("");
-}
-
-//####################################################################################################
-// Show the execution time (optional)
-//####################################################################################################
-// WARNING: for UNO/AVR legacy reasons printing text to the screen with the Mega might not work for
-// sketch sizes greater than ~70KBytes because 16-bit address pointers are used in some libraries.
-
-// The Due will work fine with the HX8357_Due library.
-
-void showTime(uint32_t msTime) {
-  //tft.setCursor(0, 0);
-  //tft.setTextFont(1);
-  //tft.setTextSize(2);
-  //tft.setTextColor(TFT_WHITE, TFT_BLACK);
-  //tft.print(F(" JPEG drawn in "));
-  //tft.print(msTime);
-  //tft.println(F(" ms "));
-  Serial.print(F(" JPEG drawn in "));
-  Serial.print(msTime);
-  Serial.println(F(" ms "));
-}
-
