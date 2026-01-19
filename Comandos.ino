@@ -1,4 +1,4 @@
-void botao(int x) {
+void botao(char x) {
   switch (x) {
     case 'a':
       Keyboard.write(KEY_F13);
