@@ -2,8 +2,21 @@ static inline bool toqueDetectXY(uint16_t x, uint16_t y, int xini, int yini, int
   return (x >= xini && x < (xini + w) && y >= yini && y < (yini + h));
 }
 
+bool touchIrqActive() {
+  return digitalRead(TOUCH_IRQ_PIN) == LOW; // XPT2046 T_IRQ é active low [web:22]
+}
 
-//Funções da biblioteca TFT_eSPI
+void entrarDeepSleepPorInatividade() {
+  digitalWrite(TFT_BL, LOW);
+
+  // EXT0: acorda quando o pino RTC ficar no nível definido.
+  // Como TIRQ é ativo em LOW, usamos level = 0 (LOW).
+  esp_sleep_enable_ext0_wakeup((gpio_num_t)TOUCH_IRQ_PIN, 0);
+
+  delay(50); // evita dormir no meio de uma transição
+  esp_deep_sleep_start();
+}
+
 void sdBegin(){
   if (!SD.begin(5, tft.getSPIinstance())) {
     return;
